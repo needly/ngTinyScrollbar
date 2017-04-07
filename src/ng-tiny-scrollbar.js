@@ -113,6 +113,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             $animate.addClass($scrollbar, 'visible').then(function() {
                                 $animate.removeClass($scrollbar, 'visible');
                             });
+                            $animate.addClass($viewport, 'scroll-visible').then(function() {
+                                $animate.removeClass($viewport, 'scroll-visible');
+                            });
                         }
 
                         if (scrollTo != null)  {
