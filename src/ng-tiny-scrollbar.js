@@ -210,6 +210,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                         if (!self.options.alwaysVisible) {
                             $scrollbar.addClass('visible');
+                            $viewport.addClass('scroll-visible');
                         }
                         mousePosition = isHorizontal ? event.pageX : event.pageY;
                         self.thumbPosition = parseInt($thumb.css(posiLabel), 10) || 0;
@@ -235,9 +236,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 $timeout.cancel(restoreVisibilityAfterWheel);
                             }
                             $scrollbar.addClass('visible');
+                            $viewport.addClass('scroll-visible');
 
                             restoreVisibilityAfterWheel = $timeout(function() {
                                 $scrollbar.removeClass('visible');
+                                $viewport.removeClass('scroll-visible');
                             }, 100);
                         }
 
@@ -317,6 +320,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         $element.removeClass('scroll-no-select');
                         if (!self.options.alwaysVisible) {
                             $scrollbar.removeClass('visible');
+                            $viewport.removeClass('scroll-visible');
                         }
 
                         $document.off('mousemove', drag);

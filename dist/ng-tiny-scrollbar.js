@@ -113,6 +113,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             $animate.addClass($scrollbar, 'visible').then(function() {
                                 $animate.removeClass($scrollbar, 'visible');
                             });
+                            $animate.addClass($viewport, 'scroll-visible').then(function() {
+                                $animate.removeClass($viewport, 'scroll-visible');
+                            });
                         }
 
                         if (scrollTo != null)  {
@@ -159,7 +162,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                             $element.on(wheelEvent, wheel);
                         }
 
-                        if (self.options.autoUpdate && MutationObserver) {
+                        if (self.options.autoUpdate && typeof MutationObserver === 'function') {
                             (function () {
                                 var recentWidth = $overview[0].offsetWidth,
                                     recentHeight = $overview[0].offsetHeight,
@@ -207,6 +210,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
                         if (!self.options.alwaysVisible) {
                             $scrollbar.addClass('visible');
+                            $viewport.addClass('scroll-visible');
                         }
                         mousePosition = isHorizontal ? event.pageX : event.pageY;
                         self.thumbPosition = parseInt($thumb.css(posiLabel), 10) || 0;
@@ -232,9 +236,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                                 $timeout.cancel(restoreVisibilityAfterWheel);
                             }
                             $scrollbar.addClass('visible');
+                            $viewport.addClass('scroll-visible');
 
                             restoreVisibilityAfterWheel = $timeout(function() {
                                 $scrollbar.removeClass('visible');
+                                $viewport.removeClass('scroll-visible');
                             }, 100);
                         }
 
@@ -314,6 +320,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
                         $element.removeClass('scroll-no-select');
                         if (!self.options.alwaysVisible) {
                             $scrollbar.removeClass('visible');
+                            $viewport.removeClass('scroll-visible');
                         }
 
                         $document.off('mousemove', drag);
